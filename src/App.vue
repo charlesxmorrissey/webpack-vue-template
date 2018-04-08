@@ -15,7 +15,6 @@
   display: flex;
   justify-content: center;
   flex-direction: column;;
-  transform: translate3d(0, 0, 100px);
 
   @media (--viewport-medium) {
     background: var(--mainColor);
