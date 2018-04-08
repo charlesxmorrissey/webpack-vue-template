@@ -1,0 +1,29 @@
+@custom-media --viewport-medium (max-width: 1000px);
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;
+
+:root {
+  --bgColor: gold;
+  --fontColor: #000;
+  --mainColor: lime;
+}
+
+body {
+  color: var(--fontColor);
+  font-family: system-ui;
+}
+
+:--heading {
+  color: var(--mainColor);
+
+  @media (--viewport-medium) {
+    color: var(--fontColor);
+  }
+}
+
+a {
+  color: rebeccapurple;
+
+  &:hover {
+    color: yellowgreen;
+  }
+}

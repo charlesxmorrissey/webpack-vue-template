@@ -1,0 +1,15 @@
+# misc
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.idea
+
+# dependencies
+node_modules/
+
+# compiled assets
+dist/
+
+# jest test coverage
+.jest_coverage
