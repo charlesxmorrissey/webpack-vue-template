@@ -20,6 +20,7 @@ const webpackConfig = {
     alias: {
       assets: config.appAssets,
       components: config.appComponents,
+      pages: config.appPages,
     },
   },
 

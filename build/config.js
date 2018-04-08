@@ -14,6 +14,7 @@ module.exports = {
   appImages: resolveApp('src/assets/images'),
   appIndexJs: resolveApp('src/index.js'),
   appNodeModules: resolveApp('node_modules'),
+  appPages: resolveApp('src/pages'),
   appProdSourceMap: true,
   appSrc: resolveApp('src'),
   appStyles: resolveApp('src/assets/css'),
