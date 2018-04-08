@@ -1,17 +1,13 @@
 <template>
-  <div class="full-width center-content">
+  <main>
     <router-view />
-  </div>
+  </main>
 </template>
 
 <style>
 @import-normalize;
 
 @custom-media --viewport-medium (max-width: 1000px);
-
-.full-width: {
-  width: 100%;
-}
 
 .center-content {
   align-items: center;
@@ -22,7 +18,7 @@
   transform: translate3d(0, 0, 100px);
 
   @media (--viewport-medium) {
-    background: #ccc;
+    background: var(--mainColor);
   }
 }
 </style>
