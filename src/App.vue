@@ -14,7 +14,7 @@
   background: var(--bgColor);
   display: flex;
   justify-content: center;
-  flex-direction: column;;
+  flex-direction: column;
 
   @media (--viewport-medium) {
     background: var(--mainColor);
