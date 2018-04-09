@@ -15,7 +15,7 @@ module.exports = {
   appIndexJs: resolveApp('src/index.js'),
   appNodeModules: resolveApp('node_modules'),
   appPages: resolveApp('src/pages'),
-  appProdSourceMap: true,
+  appProdSourceMap: false,
   appSrc: resolveApp('src'),
   appStyles: resolveApp('src/assets/css'),
   appTitle: 'Webpack Vue Template',
