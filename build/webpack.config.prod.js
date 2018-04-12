@@ -1,11 +1,12 @@
 'use strict'
 
 const config = require('./config.js')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const webpackConfig = require('./webpack.config.base')
 const webpackMerge = require('webpack-merge')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const webpackProdConfig = webpackMerge(webpackConfig, {
@@ -71,6 +72,11 @@ const webpackProdConfig = webpackMerge(webpackConfig, {
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
 
+    // Removes the `dist` directory before compilation.
+    new CleanWebpackPlugin([config.appBuild], {
+      root: config.appBase,
+    }),
+
     // Extracts CSS styles into it's own CSS bundle.
     new ExtractTextWebpackPlugin({
       filename: 'css/[name].[chunkhash].css',
@@ -84,8 +90,6 @@ const webpackProdConfig = webpackMerge(webpackConfig, {
     }),
 
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      inject: true,
       minify: {
         collapseWhitespace: true,
         keepClosingSlash: true,

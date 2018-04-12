@@ -1,8 +1,7 @@
 'use strict'
 
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = require('./config.js')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const webpackConfig = {
   entry: {
@@ -52,15 +51,8 @@ const webpackConfig = {
   },
 
   plugins: [
-    // Removes the `dist` directory before building.
-    new CleanWebpackPlugin([config.appBuild], {
-      root: config.appBase,
-    }),
-
     new HtmlWebpackPlugin({
-      filename: 'index.html',
       template: config.appHtml,
-      inject: true,
       title: config.appTitle,
     }),
   ],
