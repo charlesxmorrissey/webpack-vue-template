@@ -14,4 +14,7 @@ yarn build
 
 # run all tests
 yarn test
+
+# run tests in watch mode
+yarn test:watch
 ```
