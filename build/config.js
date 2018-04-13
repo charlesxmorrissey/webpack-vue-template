@@ -10,7 +10,7 @@ module.exports = {
   appBuild: resolveApp('dist'),
   appComponents: resolveApp('src/components'),
   appEnv: process.env.NODE_ENV,
-  appHtml: resolveApp('index.html'),
+  appHtml: resolveApp('public/index.html'),
   appImages: resolveApp('src/assets/images'),
   appIndexJs: resolveApp('src/index.js'),
   appNodeModules: resolveApp('node_modules'),
