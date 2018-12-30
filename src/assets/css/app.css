@@ -7,9 +7,16 @@
   --mainColor: lime;
 }
 
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
 body {
   color: var(--fontColor);
   font-family: system-ui;
+  margin: 0;
 }
 
 :--heading {

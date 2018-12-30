@@ -2,12 +2,12 @@
 
 const config = require('./config.js')
 const webpack = require('webpack')
-const webpackConfig = require('./webpack.config.base')
+const webpackConfig = require('./webpack.base.config')
 const webpackMerge = require('webpack-merge')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const webpackProdConfig = webpackMerge(webpackConfig, {
   mode: 'production',
@@ -54,6 +54,23 @@ const webpackProdConfig = webpackMerge(webpackConfig, {
   },
 
   optimization: {
+    minimizer: [
+      // new UglifyJsPlugin({
+      //   cache: true,
+      //   parallel: true,
+      //   sourceMap: config.appProdSourceMap,
+      // }),
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorPluginOptions: {
+          preset: [
+            'advanced',
+            {
+              discardComments: { removeAll: true },
+            },
+          ],
+        },
+      }),
+    ],
     splitChunks: {
       cacheGroups: {
         commons: {
@@ -82,13 +99,7 @@ const webpackProdConfig = webpackMerge(webpackConfig, {
       filename: 'css/[name].[chunkhash].css',
     }),
 
-    // Optimize and minimize CSS assets.
-    new OptimizeCssAssetsPlugin({
-      cssProcessorOptions: {
-        safe: true,
-      },
-    }),
-
+    // Simplifies creation of HTML files to serve webpack bundles.
     new HtmlWebpackPlugin({
       minify: {
         collapseWhitespace: true,

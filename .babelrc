@@ -1,18 +1,24 @@
 {
-  'presets': [
-    ['env', {
-      'modules': false,
-      'targets': {
-        'browsers': ['> 1%', 'last 2 versions', 'not ie <= 11'],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry"
       }
-    }],
-    'stage-2'
+    ]
   ],
   "comments": false,
-  'env': {
-    'test': {
-      'presets': [
-        ['env', { 'targets': { 'node': 'current' }}]
+  "env": {
+    "test": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "targets": {
+              "node": "current"
+            }
+          }
+        ]
       ]
     }
   }

@@ -1,23 +1,26 @@
 <template>
   <main>
-    <router-view />
+    <Hello>
+      <h1>Hello World</h1>
+    </Hello>
   </main>
 </template>
 
+<script>
+import Hello from 'components/Hello'
+
+export default {
+  name: 'App',
+
+  components: {
+    Hello,
+  },
+}
+</script>
+
 <style>
-@import-normalize;
-
-@custom-media --viewport-medium (max-width: 1000px);
-
-.center-content {
-  align-items: center;
-  background: var(--bgColor);
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-
-  @media (--viewport-medium) {
-    background: var(--mainColor);
-  }
+main {
+  background: lightblue;
+  height: 100%;
 }
 </style>

@@ -2,7 +2,7 @@
 
 const config = require('./config.js')
 const webpack = require('webpack')
-const webpackConfig = require('./webpack.config.base')
+const webpackConfig = require('./webpack.base.config')
 const webpackMerge = require('webpack-merge')
 
 const webpackDevConfig = webpackMerge(webpackConfig, {
@@ -11,17 +11,12 @@ const webpackDevConfig = webpackMerge(webpackConfig, {
   devtool: 'cheap-module-eval-source-map',
 
   devServer: {
+    ...config.appStats,
     clientLogLevel: 'error',
     contentBase: config.appBuild,
     compress: true,
     hot: true,
     overlay: true,
-    stats: {
-      children: false,
-      chunks: false,
-      colors: true,
-      modules: false,
-    },
   },
 
   module: {

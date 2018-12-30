@@ -17,6 +17,15 @@ module.exports = {
   appPages: resolveApp('src/pages'),
   appProdSourceMap: false,
   appSrc: resolveApp('src'),
+  appStats: {
+    stats: {
+      children: false,
+      chunkModules: false,
+      chunks: false,
+      colors: true,
+      modules: false,
+    },
+  },
   appStyles: resolveApp('src/assets/css'),
   appTitle: 'Webpack Vue Template',
 }

@@ -4,6 +4,8 @@ const config = require('./config.js')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const webpackConfig = {
+  ...config.appStats,
+
   entry: {
     app: config.appIndexJs,
   },
@@ -23,22 +25,14 @@ const webpackConfig = {
     },
   },
 
-  stats: {
-    children: false,
-    chunkModules: false,
-    chunks: false,
-    colors: true,
-    modules: false,
-  },
-
   module: {
     rules: [
-      {
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        include: config.appSrc,
-        enforce: 'pre',
-      },
+      // {
+      //   test: /\.(js|vue)$/,
+      //   loader: 'eslint-loader',
+      //   include: config.appSrc,
+      //   enforce: 'pre',
+      // },
       {
         test: /\.js$/,
         loader: 'babel-loader',
@@ -51,6 +45,7 @@ const webpackConfig = {
   },
 
   plugins: [
+    // Simplifies creation of HTML files to serve webpack bundles.
     new HtmlWebpackPlugin({
       template: config.appHtml,
       title: config.appTitle,
