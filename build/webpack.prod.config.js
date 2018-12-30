@@ -5,8 +5,8 @@ const webpack = require('webpack')
 const webpackConfig = require('./webpack.base.config')
 const webpackMerge = require('webpack-merge')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const webpackProdConfig = webpackMerge(webpackConfig, {
@@ -25,31 +25,30 @@ const webpackProdConfig = webpackMerge(webpackConfig, {
         test: /\.vue$/,
         loader: 'vue-loader',
         include: config.appSrc,
-        options: {
-          extractCSS: true,
-        },
+        // options: {
+        //   extractCSS: true,
+        // },
       },
       {
         test: /\.css$/,
         include: config.appStyles,
-        use: ExtractTextWebpackPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                sourceMap: config.appProdSourceMap,
-              },
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: config.appProdSourceMap,
             },
-            {
-              loader: 'postcss-loader',
-              options: {
-                sourceMap: config.appProdSourceMap,
-              },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: config.appProdSourceMap,
             },
-          ],
-        }),
+          },
+        ],
       },
+
     ],
   },
 
@@ -95,8 +94,9 @@ const webpackProdConfig = webpackMerge(webpackConfig, {
     }),
 
     // Extracts CSS styles into it's own CSS bundle.
-    new ExtractTextWebpackPlugin({
-      filename: 'css/[name].[chunkhash].css',
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash].css',
+      chunkFilename: '[id].css',
     }),
 
     // Simplifies creation of HTML files to serve webpack bundles.
