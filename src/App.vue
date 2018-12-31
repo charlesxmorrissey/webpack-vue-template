@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="app">
     <Hello>
       <h1>Hello World</h1>
     </Hello>
@@ -17,3 +17,9 @@ export default {
   },
 }
 </script>
+
+<style>
+.app {
+  background: tomato;
+}
+</style>

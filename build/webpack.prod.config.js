@@ -3,14 +3,14 @@
 const config = require('./config.js')
 const webpack = require('webpack')
 const webpackConfig = require('./webpack.base.config')
-const webpackMerge = require('webpack-merge')
+const merge = require('webpack-merge')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-const webpackProdConfig = webpackMerge(webpackConfig, {
+const webpackProdConfig = merge(webpackConfig, {
   mode: 'production',
 
   devtool: config.appProdSourceMap ? 'source-map' : false,

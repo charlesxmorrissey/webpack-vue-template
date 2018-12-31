@@ -3,9 +3,9 @@
 const config = require('./config.js')
 const webpack = require('webpack')
 const webpackConfig = require('./webpack.base.config')
-const webpackMerge = require('webpack-merge')
+const merge = require('webpack-merge')
 
-const webpackDevConfig = webpackMerge(webpackConfig, {
+const webpackDevConfig = merge(webpackConfig, {
   mode: 'development',
 
   devtool: 'cheap-module-eval-source-map',
