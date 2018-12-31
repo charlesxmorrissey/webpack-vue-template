@@ -3,11 +3,11 @@ module.exports = {
     'postcss-normalize': {
       forceImport: true,
     },
-    'autoprefixer': {
-      'flexbox': 'no-2009',
+    autoprefixer: {
+      flexbox: 'no-2009',
     },
     'postcss-pxtorem': {
-      'propList': ['*'],
+      propList: ['*'],
     },
     'postcss-nesting': {},
     'postcss-custom-media': {},

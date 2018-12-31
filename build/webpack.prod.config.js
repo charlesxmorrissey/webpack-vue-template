@@ -29,7 +29,6 @@ const webpackProdConfig = merge(webpackConfig, {
       },
       {
         test: /\.css$/,
-        include: config.appStyles,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -46,7 +45,6 @@ const webpackProdConfig = merge(webpackConfig, {
           },
         ],
       },
-
     ],
   },
 
@@ -94,7 +92,7 @@ const webpackProdConfig = merge(webpackConfig, {
     // Extracts CSS styles into it's own CSS bundle.
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash].css',
-      chunkFilename: '[id].css',
+      chunkFilename: 'css/[id].css',
     }),
 
     // Simplifies creation of HTML files to serve webpack bundles.

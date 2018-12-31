@@ -28,7 +28,6 @@ const webpackDevConfig = merge(webpackConfig, {
       },
       {
         test: /\.css$/,
-        include: config.appStyles,
         use: [
           {
             loader: 'style-loader',
