@@ -9,9 +9,3 @@ export default {
   name: 'Hello',
 }
 </script>
-
-<style scoped>
-.hello {
-  background: red;
-}
-</style>

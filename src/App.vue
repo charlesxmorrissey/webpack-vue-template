@@ -17,10 +17,3 @@ export default {
   },
 }
 </script>
-
-<style>
-main {
-  background: lightblue;
-  height: 100%;
-}
-</style>

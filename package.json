@@ -49,6 +49,7 @@
     "postcss-preset-env": "^6.5.0",
     "postcss-pxtorem": "^4.0.1",
     "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.1.1",
     "url-loader": "^1.0.1",
     "vue-jest": "^3.0.2",
     "vue-loader": "^14.2.2",

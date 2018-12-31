@@ -8,6 +8,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const webpackProdConfig = webpackMerge(webpackConfig, {
   mode: 'production',
@@ -25,9 +26,6 @@ const webpackProdConfig = webpackMerge(webpackConfig, {
         test: /\.vue$/,
         loader: 'vue-loader',
         include: config.appSrc,
-        // options: {
-        //   extractCSS: true,
-        // },
       },
       {
         test: /\.css$/,
@@ -54,11 +52,11 @@ const webpackProdConfig = webpackMerge(webpackConfig, {
 
   optimization: {
     minimizer: [
-      // new UglifyJsPlugin({
-      //   cache: true,
-      //   parallel: true,
-      //   sourceMap: config.appProdSourceMap,
-      // }),
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: config.appProdSourceMap,
+      }),
       new OptimizeCSSAssetsPlugin({
         cssProcessorPluginOptions: {
           preset: [
