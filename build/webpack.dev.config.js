@@ -1,5 +1,6 @@
 'use strict'
 
+const ESLintFormatter = require('eslint-formatter-pretty')
 const config = require('./config.js')
 const webpack = require('webpack')
 const webpackConfig = require('./webpack.base.config')
@@ -21,6 +22,16 @@ const webpackDevConfig = merge(webpackConfig, {
 
   module: {
     rules: [
+      {
+        enforce: 'pre',
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        include: config.appSrc,
+        options: {
+          emitWarning: true,
+          formatter: ESLintFormatter,
+        },
+      },
       {
         test: /\.vue$/,
         loader: 'vue-loader',

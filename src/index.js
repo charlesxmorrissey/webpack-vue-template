@@ -5,8 +5,6 @@ import 'assets/css/app.css'
 // Vue App Config
 Vue.config.productionTip = false
 
-/* eslint-disable-next-line no-new */
 new Vue({
-  el: '#app',
   render: (h) => h(App),
-})
+}).$mount('#app')

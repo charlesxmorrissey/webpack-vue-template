@@ -2,7 +2,7 @@
 
 const config = require('./config.js')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const { VueLoaderPlugin } = require('vue-loader')
 
 const webpackConfig = {
   ...config.appStats,
@@ -29,12 +29,6 @@ const webpackConfig = {
 
   module: {
     rules: [
-      // {
-      //   test: /\.(js|vue)$/,
-      //   loader: 'eslint-loader',
-      //   include: config.appSrc,
-      //   enforce: 'pre',
-      // },
       {
         test: /\.js$/,
         loader: 'babel-loader',
