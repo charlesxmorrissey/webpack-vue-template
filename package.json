@@ -1,5 +1,6 @@
 {
   "name": "webpack-vue-template",
+  "description": "A base setup for webpack + Vue projects.",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Charles X. Morrissey",
@@ -7,9 +8,9 @@
   "scripts": {
     "build": "webpack --config build/webpack.prod.config.js",
     "dev": "webpack-dev-server --config build/webpack.dev.config.js",
-    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "format": "yarn prettier && yarn lint",
     "lint:autofix": "eslint --ext .js,.vue build src --fix",
+    "lint:check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "lint": "eslint --ext .js,.vue build src",
     "prettier": "prettier --write '**/*.{js,json}'",
     "test:watch": "jest --watch",
