@@ -19,11 +19,15 @@
     "**/*.{js,json}": [
       "prettier --write",
       "git add"
+    ],
+    "**/*.{js,vue}": [
+      "eslint",
+      "git add"
     ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint && lint-staged"
+      "pre-commit": "lint-staged"
     }
   },
   "dependencies": {
