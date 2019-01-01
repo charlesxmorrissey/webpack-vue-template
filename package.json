@@ -17,11 +17,7 @@
   },
   "lint-staged": {
     "**/*.{js,json}": [
-      "prettier --write",
-      "git add"
-    ],
-    "**/*.{js,vue}": [
-      "eslint --ext .js,.vue build src",
+      "prettier --write && yarn run lint-autofix",
       "git add"
     ]
   },
