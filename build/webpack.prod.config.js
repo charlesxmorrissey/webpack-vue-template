@@ -1,9 +1,9 @@
 'use strict'
 
 const config = require('./config.js')
+const merge = require('webpack-merge')
 const webpack = require('webpack')
 const webpackConfig = require('./webpack.base.config')
-const merge = require('webpack-merge')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')

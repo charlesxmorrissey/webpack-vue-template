@@ -14,8 +14,8 @@ const webpackDevConfig = merge(webpackConfig, {
   devServer: {
     ...config.appStats,
     clientLogLevel: 'error',
-    contentBase: config.appBuild,
     compress: true,
+    contentBase: config.appBuild,
     hot: true,
     overlay: true,
   },
@@ -70,8 +70,15 @@ const webpackDevConfig = merge(webpackConfig, {
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
 
+    // Necessary to emit hot updates (CSS only).
     new webpack.HotModuleReplacementPlugin(),
   ],
+
+  // Turn off performance hints during development because we don't
+  // do any splitting or minification in interest of speed.
+  performance: {
+    hints: false,
+  },
 })
 
 module.exports = webpackDevConfig
