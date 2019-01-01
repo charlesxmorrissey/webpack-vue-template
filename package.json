@@ -7,17 +7,21 @@
   "scripts": {
     "build": "webpack --config build/webpack.prod.config.js",
     "dev": "webpack-dev-server --config build/webpack.dev.config.js",
-    "format": "yarn prettier && yarn lint",
-    "lint": "eslint --ext .js,.vue build src",
-    "lint-autofix": "eslint --ext .js,.vue build src --fix",
     "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
+    "format": "yarn prettier && yarn lint",
+    "lint:autofix": "eslint --ext .js,.vue build src --fix",
+    "lint": "eslint --ext .js,.vue build src",
     "prettier": "prettier --write '**/*.{js,json}'",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test": "jest"
   },
   "lint-staged": {
     "**/*.{js,json}": [
-      "prettier --write && yarn run lint-autofix",
+      "prettier --write",
+      "git add"
+    ],
+    "**/*.{js,vue}": [
+      "eslint --ext .js,.vue build src --fix",
       "git add"
     ]
   },
