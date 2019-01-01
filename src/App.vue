@@ -1,8 +1,8 @@
 <template>
   <main class="app">
-    <Hello>
-      <h1>Hello World</h1>
-    </Hello>
+  <Hello>
+    <h1>Hello World</h1>
+  </Hello>
   </main>
 </template>
 
