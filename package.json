@@ -21,7 +21,7 @@
       "git add"
     ],
     "**/*.{js,vue}": [
-      "eslint",
+      "eslint --ext .js,.vue build src",
       "git add"
     ]
   },
