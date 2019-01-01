@@ -10,7 +10,6 @@
     "dev": "webpack-dev-server --config build/webpack.dev.config.js",
     "format": "yarn prettier && yarn lint",
     "lint:autofix": "eslint --ext .js,.vue build src --fix",
-    "lint:check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "lint": "eslint --ext .js,.vue build src",
     "prettier": "prettier --write '**/*.{js,json}'",
     "test:watch": "jest --watch",
