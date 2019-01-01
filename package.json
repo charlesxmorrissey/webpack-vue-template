@@ -16,7 +16,6 @@
     "test:watch": "jest --watch"
   },
   "lint-staged": {
-
     "**/*.{js,json}": [
       "prettier --write",
       "git add"
@@ -24,7 +23,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint-autofix && lint-staged"
+      "pre-commit": "yarn lint && lint-staged"
     }
   },
   "dependencies": {
