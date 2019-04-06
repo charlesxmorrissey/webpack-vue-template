@@ -12,6 +12,5 @@ module.exports = {
     'postcss-nesting': {},
     'postcss-custom-media': {},
     'postcss-custom-selectors': {},
-    'postcss-font-family-system-ui': {},
   },
 }

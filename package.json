@@ -31,6 +31,7 @@
     }
   },
   "dependencies": {
+    "core-js": "3",
     "vue": "^2.5.21"
   },
   "devDependencies": {
@@ -59,7 +60,6 @@
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-custom-media": "^7.0.7",
     "postcss-custom-selectors": "^5.1.2",
-    "postcss-font-family-system-ui": "^4.1.0",
     "postcss-loader": "^3.0.0",
     "postcss-nesting": "^7.0.0",
     "postcss-normalize": "^7.0.1",

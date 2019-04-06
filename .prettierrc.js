@@ -1,6 +1,6 @@
 module.exports = {
   arrowParens: 'always',
-  parser: 'babylon',
+  parser: 'babel',
   semi: false,
   singleQuote: true,
   trailingComma: 'es5',

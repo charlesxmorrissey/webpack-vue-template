@@ -4,7 +4,7 @@
 :root {
   --bgColor: gold;
   --fontColor: #000;
-  --mainColor: lime;
+  --mainColor: coral;
 }
 
 html,
@@ -15,7 +15,7 @@ body {
 
 body {
   color: var(--fontColor);
-  font-family: system-ui;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   margin: 0;
 }
 
