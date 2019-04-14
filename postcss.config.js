@@ -3,7 +3,7 @@ module.exports = {
     'postcss-normalize': {
       forceImport: true,
     },
-    autoprefixer: {
+    'autoprefixer': {
       flexbox: 'no-2009',
     },
     'postcss-pxtorem': {
