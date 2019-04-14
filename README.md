@@ -12,9 +12,9 @@ yarn dev
 # build for production with minification
 yarn build
 
+# formats and lints all js, json and vue files
+yarn format
+
 # run all tests
 yarn test
-
-# run tests in watch mode
-yarn test:watch
 ```
