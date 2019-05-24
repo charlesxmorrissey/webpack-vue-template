@@ -8,12 +8,12 @@
   "scripts": {
     "build": "webpack --config build/webpack.prod.config.js",
     "dev": "webpack-dev-server --config build/webpack.dev.config.js",
-    "format": "yarn prettier && yarn lint",
+    "format": "prettier --write '**/*.{js,json}'",
     "lint:autofix": "eslint --ext .js,.vue build src --fix",
     "lint": "eslint --ext .js,.vue build src",
-    "prettier": "prettier --write '**/*.{js,json}'",
     "test:watch": "jest --watch",
-    "test": "jest"
+    "test": "jest",
+    "validate": "yarn format && yarn lint"
   },
   "lint-staged": {
     "**/*.{js,json}": [
