@@ -8,11 +8,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 
 const webpackProdConfig = merge(webpackConfig, {
   mode: 'production',
-
   devtool: config.appProdSourceMap ? 'source-map' : false,
 
   output: {
@@ -49,11 +48,11 @@ const webpackProdConfig = merge(webpackConfig, {
   },
 
   optimization: {
+    minimize: true,
     minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
+      new TerserPlugin({
         sourceMap: config.appProdSourceMap,
+        test: /\.js(\?.*)?$/i,
       }),
       new OptimizeCSSAssetsPlugin({
         cssProcessorPluginOptions: {
