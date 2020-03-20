@@ -1,8 +1,10 @@
 'use strict'
 
-const config = require('./config.js')
+const eslintFormatter = require('eslint-formatter-pretty')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
+
+const config = require('./config.js')
 
 const webpackConfig = {
   ...config.appStats,
@@ -18,17 +20,25 @@ const webpackConfig = {
   },
 
   resolve: {
-    extensions: ['.js', '.json', '.vue'],
+    extensions: ['.js', '.vue'],
     alias: {
-      assets: config.appAssets,
-      components: config.appComponents,
-      pages: config.appPages,
+      '@': config.appSrc,
     },
     modules: ['node_modules'],
   },
 
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        loader: 'eslint-loader',
+        include: config.appSrc,
+        enforce: 'pre',
+        options: {
+          emitWarning: true,
+          formatter: eslintFormatter,
+        },
+      },
       {
         test: /\.js$/,
         loader: 'babel-loader',
@@ -46,8 +56,9 @@ const webpackConfig = {
 
     // Simplifies creation of HTML files to serve webpack bundles.
     new HtmlWebpackPlugin({
-      template: config.appHtml,
-      title: config.appTitle,
+      description: config.appTemplateMeta.description,
+      template: config.appTemplateMeta.template,
+      title: config.appTemplateMeta.title,
     }),
   ],
 

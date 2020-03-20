@@ -1,10 +1,10 @@
 'use strict'
 
-const ESLintFormatter = require('eslint-formatter-pretty')
-const config = require('./config.js')
 const webpack = require('webpack')
-const webpackConfig = require('./webpack.base.config')
 const merge = require('webpack-merge')
+
+const config = require('./config.js')
+const webpackConfig = require('./webpack.base.config')
 
 const webpackDevConfig = merge(webpackConfig, {
   mode: 'development',
@@ -22,40 +22,54 @@ const webpackDevConfig = merge(webpackConfig, {
   module: {
     rules: [
       {
-        enforce: 'pre',
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        include: config.appSrc,
-        options: {
-          emitWarning: true,
-          formatter: ESLintFormatter,
-        },
-      },
-      {
         test: /\.vue$/,
         loader: 'vue-loader',
         include: config.appSrc,
       },
       {
         test: /\.css$/,
-        use: [
+        oneOf: [
+          // This matches `<style module>`
           {
-            loader: 'style-loader',
-            options: {
-              sourceMap: true,
-            },
+            resourceQuery: /module/,
+            use: [
+              'vue-style-loader',
+              {
+                loader: 'css-loader',
+                options: {
+                  localsConvention: 'camelCase',
+                  modules: {
+                    context: config.appSrc,
+                    localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                  },
+                  sourceMap: config.appDevSourceMap,
+                },
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: config.appDevSourceMap,
+                },
+              },
+            ],
           },
+          // This matches plain `<style>` or `<style scoped>`
           {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-            },
+            use: [
+              'vue-style-loader',
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: config.appDevSourceMap,
+                },
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: config.appDevSourceMap,
+                },
+              },
+            ],
           },
         ],
       },

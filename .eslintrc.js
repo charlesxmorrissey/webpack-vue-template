@@ -4,10 +4,11 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
-    node: true,
+    jest: true,
   },
 
   extends: [
+    'standard',
     'plugin:vue/recommended',
     'eslint:recommended',
     'prettier/vue',
@@ -15,6 +16,7 @@ module.exports = {
   ],
 
   parserOptions: {
+    ecmaVersion: 2018,
     parser: 'babel-eslint',
     sourceType: 'module',
   },

@@ -10,7 +10,6 @@ module.exports = {
   appBuild: resolveApp('dist'),
   appComponents: resolveApp('src/components'),
   appEnv: process.env.NODE_ENV,
-  appHtml: resolveApp('public/index.html'),
   appImages: resolveApp('src/assets/images'),
   appIndexJs: resolveApp('src/index.js'),
   appNodeModules: resolveApp('node_modules'),
@@ -27,5 +26,9 @@ module.exports = {
     },
   },
   appStyles: resolveApp('src/assets/css'),
-  appTitle: 'Webpack Vue Template',
+  appTemplateMeta: {
+    description: 'A Vue boilerplate starter app for rapid development.',
+    template: resolveApp('public/index.html'),
+    title: 'Webpack Vue Template',
+  },
 }

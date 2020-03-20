@@ -1,14 +1,15 @@
 'use strict'
 
-const config = require('./config.js')
 const merge = require('webpack-merge')
 const webpack = require('webpack')
-const webpackConfig = require('./webpack.base.config')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+
+const config = require('./config.js')
+const webpackConfig = require('./webpack.base.config')
 
 const webpackProdConfig = merge(webpackConfig, {
   mode: 'production',
@@ -28,19 +29,48 @@ const webpackProdConfig = merge(webpackConfig, {
       },
       {
         test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
+        oneOf: [
+          // This matches `<style module>`
           {
-            loader: 'css-loader',
-            options: {
-              sourceMap: config.appProdSourceMap,
-            },
+            resourceQuery: /module/,
+            use: [
+              MiniCssExtractPlugin.loader,
+              {
+                loader: 'css-loader',
+                options: {
+                  localsConvention: 'camelCase',
+                  modules: {
+                    context: config.appSrc,
+                    localIdentName: '[hash:base64]',
+                  },
+                  sourceMap: config.appProdSourceMap,
+                },
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: config.appProdSourceMap,
+                },
+              },
+            ],
           },
+          // This matches plain `<style>` or `<style scoped>`
           {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: config.appProdSourceMap,
-            },
+            use: [
+              MiniCssExtractPlugin.loader,
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: config.appProdSourceMap,
+                },
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: config.appProdSourceMap,
+                },
+              },
+            ],
           },
         ],
       },
@@ -96,6 +126,7 @@ const webpackProdConfig = merge(webpackConfig, {
 
     // Simplifies creation of HTML files to serve webpack bundles.
     new HtmlWebpackPlugin({
+      description: config.appTemplateMeta.description,
       minify: {
         collapseWhitespace: true,
         keepClosingSlash: true,
@@ -108,8 +139,8 @@ const webpackProdConfig = merge(webpackConfig, {
         removeStyleLinkTypeAttributes: true,
         removeScriptTypeAttributes: true,
       },
-      template: config.appHtml,
-      title: config.appTitle,
+      template: config.appTemplateMeta.template,
+      title: config.appTemplateMeta.description,
     }),
   ],
 })
