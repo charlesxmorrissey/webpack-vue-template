@@ -23,8 +23,7 @@
   "lint-staged": {
     "**/*.{js,vue}": [
       "yarn format",
-      "yarn lint",
-      "git add"
+      "yarn lint"
     ]
   },
   "husky": {

@@ -22,7 +22,7 @@ export default {
   composes: underline;
   composes: defaultPadding from '../assets/css/shared.css';
 
-  background: red;
+  background: lavender;
 
   @media (--viewport-medium) {
     background: var(--bgColor);
