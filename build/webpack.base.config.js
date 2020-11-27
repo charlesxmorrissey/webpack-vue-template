@@ -1,10 +1,11 @@
 'use strict'
 
 const eslintFormatter = require('eslint-formatter-pretty')
+const ESLintPlugin = require('eslint-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 
-const config = require('./config.js')
+const config = require('./config')
 
 const webpackConfig = {
   ...config.appStats,
@@ -31,16 +32,6 @@ const webpackConfig = {
     rules: [
       {
         test: /\.js$/,
-        loader: 'eslint-loader',
-        include: config.appSrc,
-        enforce: 'pre',
-        options: {
-          emitWarning: true,
-          formatter: eslintFormatter,
-        },
-      },
-      {
-        test: /\.js$/,
         loader: 'babel-loader',
         include: config.appSrc,
         options: {
@@ -51,6 +42,12 @@ const webpackConfig = {
   },
 
   plugins: [
+    new ESLintPlugin({
+      context: config.appSrc,
+      emitWarning: true,
+      formatter: eslintFormatter,
+    }),
+
     // Enables support for Single-File Vue components.
     new VueLoaderPlugin(),
 

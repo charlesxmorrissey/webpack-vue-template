@@ -1,14 +1,13 @@
 'use strict'
 
-const merge = require('webpack-merge')
 const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+const { merge } = require('webpack-merge')
 
-const config = require('./config.js')
+const config = require('./config')
 const webpackConfig = require('./webpack.base.config')
 
 const webpackProdConfig = merge(webpackConfig, {
@@ -84,10 +83,11 @@ const webpackProdConfig = merge(webpackConfig, {
         sourceMap: config.appProdSourceMap,
         test: /\.js(\?.*)?$/i,
       }),
-      new OptimizeCSSAssetsPlugin({
-        cssProcessorPluginOptions: {
+
+      new CssMinimizerPlugin({
+        minimizerOptions: {
           preset: [
-            'advanced',
+            'default',
             {
               discardComments: { removeAll: true },
             },
@@ -122,25 +122,6 @@ const webpackProdConfig = merge(webpackConfig, {
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash].css',
       chunkFilename: 'css/[id].css',
-    }),
-
-    // Simplifies creation of HTML files to serve webpack bundles.
-    new HtmlWebpackPlugin({
-      description: config.appTemplateMeta.description,
-      minify: {
-        collapseWhitespace: true,
-        keepClosingSlash: true,
-        minifyCSS: true,
-        minifyJS: true,
-        minifyURLs: true,
-        removeComments: true,
-        removeEmptyAttributes: true,
-        removeRedundantAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        removeScriptTypeAttributes: true,
-      },
-      template: config.appTemplateMeta.template,
-      title: config.appTemplateMeta.description,
     }),
   ],
 })

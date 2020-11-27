@@ -1,9 +1,9 @@
 'use strict'
 
 const webpack = require('webpack')
-const merge = require('webpack-merge')
+const { merge } = require('webpack-merge')
 
-const config = require('./config.js')
+const config = require('./config')
 const webpackConfig = require('./webpack.base.config')
 
 const webpackDevConfig = merge(webpackConfig, {
